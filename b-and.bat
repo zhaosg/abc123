@@ -1,1 +1,1 @@
-ionic build android
+ionic build --release --prod android
