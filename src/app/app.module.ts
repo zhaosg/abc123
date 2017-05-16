@@ -10,6 +10,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {EChartsDirective} from '../directive/echarts.directive';
 import { NativeService } from '../service/native.service'
+import { ApiService } from '../service/api.service'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NativeService } from '../service/native.service'
   providers: [
     StatusBar,
     SplashScreen,
+    ApiService,
     NativeService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

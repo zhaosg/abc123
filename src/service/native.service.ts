@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
-
 @Injectable()
 export class NativeService {
   private ocodeformats: string = "EAN_8,EAN_13,UPC_E,UPC_A,CODE_128,CODE_39,ITF";
@@ -35,7 +34,7 @@ export class NativeService {
       resultDisplayDuration: 500,
       formats: this.twocodeformats
     };
-    this.nativeCallback(this.barcode, function (me) {
+    this.nativeCallback(this.barcode, () => {
       window['cordova'].plugins.barcodeScanner.scan(successFunction, failFunction, option);
     });
   }
@@ -45,7 +44,7 @@ export class NativeService {
       resultDisplayDuration: 500,
       formats: this.ocodeformats
     };
-    this.nativeCallback(this.barcode, function (me) {
+    this.nativeCallback(this.barcode, () =>  {
       window['cordova'].plugins.barcodeScanner.scan(successFunction, failFunction, option);
     });
   }
