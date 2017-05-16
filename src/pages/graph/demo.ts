@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
 import {AlertController} from 'ionic-angular';
 import {NativeService} from '../../service/native.service'
+import {ApiService} from '../../service/api.service'
+
 // import { NavController, MenuController } from 'ionic-angular';
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-demo',
+  templateUrl: 'demo.html'
 })
-export class HomePage {
+export class DemoPage {
   items = [
     {code: "qrcode", label: "二维码"},
     {code: "barcode", label: "条形码"},
@@ -16,7 +18,8 @@ export class HomePage {
   ];
 
   constructor(private alertCtrl: AlertController,
-              private nativeService: NativeService) {
+              private nativeService: NativeService,
+              private api: ApiService) {
 
   }
 
@@ -26,7 +29,7 @@ export class HomePage {
     } else if (item['code'] == 'barcode') {
       this.scanBarCode();
     } else if (item['code'] == 'http') {
-      //this.api.load();
+      this.api.load();
     }
   }
 
