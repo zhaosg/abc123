@@ -9,6 +9,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {EChartsDirective} from '../directive/echarts.directive';
+import { NativeService } from '../service/native.service'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {EChartsDirective} from '../directive/echarts.directive';
   providers: [
     StatusBar,
     SplashScreen,
+    NativeService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
