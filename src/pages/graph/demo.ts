@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {AlertController} from 'ionic-angular';
-import {NativeService} from '../../service/native.service'
-import {ApiService} from '../../service/api.service'
+import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular';
+import { NativeService } from '../../service/native.service'
+import { ApiService } from '../../service/api.service'
 
 // import { NavController, MenuController } from 'ionic-angular';
 @Component({
@@ -10,17 +10,17 @@ import {ApiService} from '../../service/api.service'
 })
 export class DemoPage {
   items = [
-    {code: "qrcode", label: "二维码"},
-    {code: "barcode", label: "条形码"},
-    {code: "svg", label: "组态图"},
-    {code: "echarts", label: "Echarts"},
-    {code: "http", label: "Http"}
+    { code: "qrcode", label: "二维码" },
+    { code: "barcode", label: "条形码" },
+    { code: "svg", label: "组态图" },
+    { code: "echarts", label: "Echarts" },
+    { code: "http", label: "Http" },
+    { code: "people", label: "people" }
   ];
 
   constructor(private alertCtrl: AlertController,
-              private nativeService: NativeService,
-              private api: ApiService) {
-
+    private nativeService: NativeService,
+    private api: ApiService) {
   }
 
   public itemSelected(item: object) {
@@ -29,7 +29,13 @@ export class DemoPage {
     } else if (item['code'] == 'barcode') {
       this.scanBarCode();
     } else if (item['code'] == 'http') {
-      this.api.load();
+      this.api.searchPlace().then(function (data) {
+        console.dir(data);
+      });
+    } else if (item['code'] == 'people') {
+      this.api.test().then(function (data) {
+        alert(data['results'][0].email);
+      });
     }
   }
 
