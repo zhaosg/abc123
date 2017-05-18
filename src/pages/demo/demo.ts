@@ -32,9 +32,9 @@ export class DemoPage {
     if (item['code'] == 'barcode') {
       this.scanCode();
     } else if (item['code'] == 'version') {
-      this.nativeService.showVersion();
+      this.nativeService.getVersionNumber();
     } else if (item['code'] == 'paizhao') {
-      this.nativeService.paizhao();
+      this.nativeService.camera();
     } else if (item['code'] == 'storage') {
       this.nativeService.teststrage();
     } else if (item['code'] == 'http') {
