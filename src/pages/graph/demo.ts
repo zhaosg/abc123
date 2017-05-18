@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { NativeService } from '../../service/native.service'
 import { ApiService } from '../../service/api.service'
+import { AppVersion } from '@ionic-native/app-version';
 
 // import { NavController, MenuController } from 'ionic-angular';
 @Component({
@@ -14,13 +15,17 @@ export class DemoPage {
     { code: "barcode", label: "条形码" },
     { code: "svg", label: "组态图" },
     { code: "echarts", label: "Echarts" },
+    { code: "version", label: "version" },
+    { code: "storage", label: "存储" },
     { code: "http", label: "Http" },
     { code: "people", label: "people" }
   ];
 
   constructor(private alertCtrl: AlertController,
     private nativeService: NativeService,
-    private api: ApiService) {
+    private api: ApiService,
+    private appVersion: AppVersion) {
+
   }
 
   public itemSelected(item: object) {
@@ -28,6 +33,10 @@ export class DemoPage {
       this.scanQR();
     } else if (item['code'] == 'barcode') {
       this.scanBarCode();
+    } else if (item['code'] == 'version') {
+      this.nativeService.showVersion();
+    } else if (item['code'] == 'storage') {
+      this.nativeService.teststrage();
     } else if (item['code'] == 'http') {
       this.api.searchPlace().then(function (data) {
         console.dir(data);

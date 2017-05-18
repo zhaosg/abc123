@@ -83,8 +83,8 @@
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
-    <plugin name="cordova-sqlite-storage" spec="~2.0.4" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="phonegap-plugin-barcodescanner" spec="~6.0.6" />
     <plugin name="cordova-plugin-http" spec="~1.2.0" />
+    <plugin name="cordova-sqlite-storage" spec="~2.0.4" />
 </widget>

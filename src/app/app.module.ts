@@ -13,9 +13,10 @@ import { EChartsDirective } from '../directive/echarts.directive';
 import { NativeService } from '../service/native.service'
 import { ApiService } from '../service/api.service'
 import { HttpService } from '../service/http.service'
-import { Http } from '@angular/http';
-import { ConnectionBackend } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { AppVersion } from '@ionic-native/app-version';
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +30,8 @@ import { HttpModule } from '@angular/http';
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +44,8 @@ import { HttpModule } from '@angular/http';
   ],
   providers: [
     StatusBar, SplashScreen, NativeService,//native服务
-    HttpService,ApiService, //restfull或http服务
+    HttpService, ApiService, //restfull或http服务
+    AppVersion,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

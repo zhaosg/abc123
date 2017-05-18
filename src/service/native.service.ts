@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class NativeService {
@@ -7,7 +8,9 @@ export class NativeService {
   private twocodeformats: string = "QR_CODE,PDF_417,DATA_MATRIX";
   private barcode: string = "barcodeScanner";
 
-  constructor(private alertCtrl: AlertController) { }
+  constructor(private alertCtrl: AlertController, private storage: Storage) {
+  }
+
   public nativeCallback(plugin: string, callback: Function) {
     var me = this;
     if (!window.hasOwnProperty('cordova')) {
@@ -44,8 +47,21 @@ export class NativeService {
       resultDisplayDuration: 500,
       formats: this.ocodeformats
     };
-    this.nativeCallback(this.barcode, () =>  {
+    this.nativeCallback(this.barcode, () => {
       window['cordova'].plugins.barcodeScanner.scan(successFunction, failFunction, option);
+    });
+  }
+
+  public showVersion() {
+    window['cordova'].getAppVersion.getVersionNumber().then(function (version) {
+      alert(version)
+    });
+  }
+
+  public teststrage() {
+    this.storage.set('age', 28);
+    this.storage.get('age').then((val) => {
+      alert(val);
     });
   }
 }
