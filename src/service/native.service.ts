@@ -22,10 +22,11 @@ export class NativeService {
       mediaType: this.nativecCamera.MediaType.PICTURE
     }
     this.nativecCamera.getPicture(options).then((imageData) => {
+      alert('拍照成功');
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      alert('');
+
     }, (err) => {
       // Handle error
       alert(err);
