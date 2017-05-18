@@ -11,14 +11,14 @@ import { AppVersion } from '@ionic-native/app-version';
 })
 export class DemoPage {
   items = [
-    { code: "qrcode", label: "二维码" },
-    { code: "barcode", label: "条形码" },
+    { code: "barcode", label: "二维码/条形码" },
     { code: "svg", label: "组态图" },
     { code: "echarts", label: "Echarts" },
-    { code: "version", label: "version" },
+    { code: "version", label: "显示版本号" },
+    { code: "paizhao", label: "拍照" },
     { code: "storage", label: "存储" },
-    { code: "http", label: "Http" },
-    { code: "people", label: "people" }
+    // { code: "http", label: "Http" },
+    { code: "people", label: "Http" }
   ];
 
   constructor(private alertCtrl: AlertController,
@@ -29,12 +29,12 @@ export class DemoPage {
   }
 
   public itemSelected(item: object) {
-    if (item['code'] == 'qrcode') {
-      this.scanQR();
-    } else if (item['code'] == 'barcode') {
-      this.scanBarCode();
+    if (item['code'] == 'barcode') {
+      this.scanCode();
     } else if (item['code'] == 'version') {
       this.nativeService.showVersion();
+    } else if (item['code'] == 'paizhao') {
+      this.nativeService.paizhao();
     } else if (item['code'] == 'storage') {
       this.nativeService.teststrage();
     } else if (item['code'] == 'http') {
@@ -48,29 +48,16 @@ export class DemoPage {
     }
   }
 
-  public scanQR() {
+  public scanCode() {
     let me = this;
-    this.nativeService.scanQrCode(result => {
-      let alert = me.alertCtrl.create({
+    this.nativeService.scanCode().then((result) => {
+      let alert = this.alertCtrl.create({
         title: '扫码结果',
         subTitle: "Result: " + result.text + "\nFormat: " + result.format + "\nCancelled: " + result.cancelled,
         buttons: ['确定']
       });
       alert.present();
-    }, function () {
-    });
-  }
-
-  public scanBarCode() {
-    let me = this;
-    this.nativeService.scanBarCode(result => {
-      let alert = me.alertCtrl.create({
-        title: '扫码结果',
-        subTitle: "Result: " + result.text + "\nFormat: " + result.format + "\nCancelled: " + result.cancelled,
-        buttons: ['确定']
-      });
-      alert.present();
-    }, function () {
+    }, (err) => {
     });
   }
 }

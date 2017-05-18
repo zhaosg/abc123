@@ -3,7 +3,7 @@
 下载并安装Nodejs
 官方的仓库比较慢，要找个快一点的仓库，在命令行界面（windows系统，在任意的文件夹，按shift+鼠标左键），输入下面的命令：
 npm config set registry https://registry.npm.taobao.org 
-npm info underscore 
+npm info underscore
 
 ### 安装ionic cli
 命令行界面输入

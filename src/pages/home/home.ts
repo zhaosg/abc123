@@ -21,38 +21,7 @@ export class HomePage {
   }
 
   public itemSelected(item: object) {
-    if (item['code'] == 'qrcode') {
-      this.scanQR();
-    } else if (item['code'] == 'barcode') {
-      this.scanBarCode();
-    } else if (item['code'] == 'http') {
-      //this.api.load();
-    }
+
   }
 
-  public scanQR() {
-    let me = this;
-    this.nativeService.scanQrCode(result => {
-      let alert = me.alertCtrl.create({
-        title: '扫码结果',
-        subTitle: "Result: " + result.text + "\nFormat: " + result.format + "\nCancelled: " + result.cancelled,
-        buttons: ['确定']
-      });
-      alert.present();
-    }, function () {
-    });
-  }
-
-  public scanBarCode() {
-    let me = this;
-    this.nativeService.scanBarCode(result => {
-      let alert = me.alertCtrl.create({
-        title: '扫码结果',
-        subTitle: "Result: " + result.text + "\nFormat: " + result.format + "\nCancelled: " + result.cancelled,
-        buttons: ['确定']
-      });
-      alert.present();
-    }, function () {
-    });
-  }
 }

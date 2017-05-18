@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
-import { AlertController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import {Injectable} from '@angular/core';
+import {AlertController} from 'ionic-angular';
+import {Storage} from '@ionic/storage';
+import {Camera, CameraOptions} from '@ionic-native/camera';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import { AppVersion } from '@ionic-native/app-version';
 
 @Injectable()
 export class NativeService {
@@ -8,7 +11,12 @@ export class NativeService {
   private twocodeformats: string = "QR_CODE,PDF_417,DATA_MATRIX";
   private barcode: string = "barcodeScanner";
 
-  constructor(private alertCtrl: AlertController, private storage: Storage) {
+  constructor(private alertCtrl: AlertController,
+              private storage: Storage,
+              private camera:Camera,
+              private appVersion:AppVersion,
+              private barcodeScanner: BarcodeScanner
+              ) {
   }
 
   public nativeCallback(plugin: string, callback: Function) {
@@ -32,28 +40,32 @@ export class NativeService {
     }
   }
 
-  public scanQrCode(successFunction: Function, failFunction: Function) {
-    var option = {
-      resultDisplayDuration: 500,
-      formats: this.twocodeformats
-    };
-    this.nativeCallback(this.barcode, () => {
-      window['cordova'].plugins.barcodeScanner.scan(successFunction, failFunction, option);
+  public paizhao() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      alert('xxxxxx');
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+      alert('errr');
+      alert(err);
     });
   }
 
-  public scanBarCode(successFunction: Function, failFunction: Function) {
-    var option = {
-      resultDisplayDuration: 500,
-      formats: this.ocodeformats
-    };
-    this.nativeCallback(this.barcode, () => {
-      window['cordova'].plugins.barcodeScanner.scan(successFunction, failFunction, option);
-    });
+
+  public scanCode() {
+    return this.barcodeScanner.scan();
   }
 
   public showVersion() {
-    window['cordova'].getAppVersion.getVersionNumber().then(function (version) {
+    this.appVersion.getVersionNumber().then(function (version) {
       alert(version)
     });
   }
