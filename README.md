@@ -21,9 +21,12 @@ ANDROID_HOME=D:\app\android-studio
 复制 D:\app\android-studio\plugins\android\lib\templates 这个文件夹到 D:\app\android\sdk\tools
 否则会报找不到D:\app\android\sdk\tools\templates的错误
 
+### 增加android平台
+ionic platform add android
+
 ### 测试
 命令行界面，输入下面的目录
-ionic start myapp
+ionic build android --prod
 
 ## 开发工具
 最好是使用vs code，因为插件比较全，智能提示也不错
