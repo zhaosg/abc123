@@ -17,6 +17,7 @@ export class DemoPage {
     { code: "version", label: "显示版本号" },
     { code: "paizhao", label: "拍照" },
     { code: "storage", label: "存储" },
+    { code: "notify", label: "通知" },
     // { code: "http", label: "Http" },
     { code: "people", label: "Http" }
   ];
@@ -37,6 +38,8 @@ export class DemoPage {
       this.nativeService.camera();
     } else if (item['code'] == 'storage') {
       this.nativeService.teststrage();
+    } else if (item['code'] == 'notify') {
+      this.nativeService.notify();
     } else if (item['code'] == 'http') {
       this.api.searchPlace().then(function (data) {
         console.dir(data);

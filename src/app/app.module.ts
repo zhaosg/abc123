@@ -18,6 +18,7 @@ import {AppVersion} from '@ionic-native/app-version';
 import {IonicStorageModule} from '@ionic/storage';
 import {Camera} from '@ionic-native/camera';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import {BarcodeScanner} from '@ionic-native/barcode-scanner';
     TabsPage
   ],
   providers: [
-    StatusBar, SplashScreen, Camera, BarcodeScanner, NativeService,//native服务
+    StatusBar, SplashScreen, Camera, BarcodeScanner, NativeService,LocalNotifications,//native服务
     HttpService, ApiService, //restfull或http服务
     AppVersion,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
