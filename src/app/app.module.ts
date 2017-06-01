@@ -19,6 +19,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {Camera} from '@ionic-native/camera';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import { IonJPushModule } from 'ionic2-jpush'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
   imports: [
     HttpModule,
     BrowserModule,
+    IonJPushModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
