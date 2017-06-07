@@ -19,7 +19,9 @@ import {IonicStorageModule} from '@ionic/storage';
 import {Camera} from '@ionic-native/camera';
 import {BarcodeScanner} from '@ionic-native/barcode-scanner';
 import {LocalNotifications} from '@ionic-native/local-notifications';
-import { IonJPushModule } from 'ionic2-jpush'
+import {IonJPushModule} from 'ionic2-jpush'
+import {PhotoViewer} from '@ionic-native/photo-viewer';
+import {Badge} from '@ionic-native/badge';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,9 @@ import { IonJPushModule } from 'ionic2-jpush'
     TabsPage
   ],
   providers: [
-    StatusBar, SplashScreen, Camera, BarcodeScanner, NativeService,LocalNotifications,//native服务
+    StatusBar, SplashScreen, Camera, BarcodeScanner, NativeService, LocalNotifications,//native服务
     HttpService, ApiService, //restfull或http服务
-    AppVersion,
+    AppVersion, PhotoViewer,Badge,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

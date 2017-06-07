@@ -7,6 +7,8 @@ import {AppVersion} from '@ionic-native/app-version';
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {JPushService} from 'ionic2-jpush'
 import {Platform} from 'ionic-angular';
+import {PhotoViewer} from '@ionic-native/photo-viewer';
+import {Badge} from '@ionic-native/badge';
 
 @Injectable()
 export class NativeService {
@@ -17,6 +19,8 @@ export class NativeService {
               private barcodeScanner: BarcodeScanner,
               private platform: Platform,
               private jPushPlugin: JPushService,
+              private photoViewer: PhotoViewer,
+              private badge: Badge,
               private localNotifications: LocalNotifications) {
     platform.ready().then(() => {
       this.jPushPlugin.init()
@@ -60,13 +64,14 @@ export class NativeService {
 
   public camera() {
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.nativecCamera.DestinationType.DATA_URL,
+      quality: 50,
+      destinationType: this.nativecCamera.DestinationType.FILE_URI,
       encodingType: this.nativecCamera.EncodingType.JPEG,
       mediaType: this.nativecCamera.MediaType.PICTURE
     }
     this.nativecCamera.getPicture(options).then((imageData) => {
-      alert('拍照成功');
+      // alert('拍照成功'+imageData);
+      this.photoViewer.show(imageData);
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
@@ -96,6 +101,7 @@ export class NativeService {
   }
 
   public notify() {
+    this.badge.set(10);
     this.localNotifications.schedule([{
       id: 2,
       title: '在新起点上，勇攀世界科技高峰',
@@ -103,5 +109,6 @@ export class NativeService {
       icon: 'https://imgsa.baidu.com/baike/s%3D500/sign=1297f363b68f8c54e7d3c52f0a282dee/7e3e6709c93d70cf86019f80fadcd100bba12b47.jpg',
       smallIcon: 'res://icon'
     }]);
+    // this.badge.increase(1);
   }
 }
